@@ -4,12 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>replit</title>
+  <title>Disability Visualizer</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
-
-  <svg> <!-- color blindness simulation -->
+    
+<svg> <!-- color blindness simulation -->
     <filter id="Achromatopsia">
       <feColorMatrix values="0.213  0.715  0.072  0.000  0.000
                              0.213  0.715  0.072  0.000  0.000
@@ -35,23 +35,29 @@
       <feColorMatrix values="1.256 -0.077 -0.179  0.000  0.000
                             -0.078  0.931  0.148  0.000  0.000
                              0.005  0.691  0.304  0.000  0.000
-                             0.000  0.000  0.000  1.000  0.000">
+                             0.000  0.000  0.000  1.000  0.000"> 
       </feColorMatrix>
     </filter>
-  </svg>
+</svg>
   
 <body>
-  <div class = "Container">
-    <div class = "TextContent"></div>
-    <div class = "Vl"></div> <!-- vertical line -->
-    <div class = "AnimationContent"></div>
-  </div>
-  <div class = "ChapterTab"></div>
-  <div class = "ColorFilters"></div>
-<div class = "Play"></div>
-<div class = "More"></div>
-  <button class = "start">Press to start</button>  
-  <script src="script.js"></script>
+    <script src="video.js"></script>
+    
+    <div class="Container">
+        <button onclick="getCamera()">asd</button>
+        <canvas id="webglCanvas"></canvas>
+        <video id="videoElement" style="display:none;" autoplay></video>
+        
+        <div class="AnimationContent"></div>
+        <div class="TextContent"></div>
+    </div>
+    <div class="ChapterTab"></div>
+    <div class="ColorFilters"></div>
+    <div class="Play"></div>
+    <div class="More"></div>
+    
+    <button class="start">Press to start</button>  
+    <script src="script.js"></script>
 </body>
 
 </html>

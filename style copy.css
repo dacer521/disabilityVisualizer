@@ -1,0 +1,363 @@
+@import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&family=M+PLUS+Rounded+1c&family=Varela+Round&display=swap');
+
+:root {
+  --circleSize: 3rem;
+  --tabColor: #cacaca;
+  --borderColor: grey;
+  --selectColor: #41c341;
+}
+
+html {
+  height: 100%;
+  background-color: #78f5f5;
+  width: 100%;
+  overflow: hidden;
+}
+
+body>*:not(.start) {
+  filter: blur(1rem);
+}
+body {
+  font-family: "Varela Round", sans-serif;
+  font-size: 1.2rem;
+}
+svg {
+  height: 0px;
+}
+
+.Container {
+  /* text + animations */
+  width: 60vw;
+  height: 75vh;
+  position: absolute;
+  /* not able to be moved */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+}
+
+.Vl {
+  border-left: 0.5vw solid black;
+  border-radius: 1rem;
+  height: 75vh;
+  position: absolute;
+  left: 50%;
+  margin-left: -3px;
+  top: 0;
+}
+
+.TextContent>span {
+  position: absolute;
+  box-sizing: border-box;
+  /* display: inline-block; */
+  display: block;
+  opacity: 0;
+  padding: 1rem;
+  width: 45%;
+  height: 100%;
+  overflow-x: hidden;
+  /* Hide horizontal scrollbar */
+  overflow-y: scroll;
+  /* Add vertical scrollbar */
+}
+
+/* Tooltip container */
+.tooltipfilter {
+  position: relative;
+  display: inline-block;
+  /* display: flex; */
+  /* flex-direction: column; */
+  align-items: center;
+
+  /* background-image: linear-gradient( red, green); */
+  animation-duration: 0.5s;
+  /*time for floating */
+  animation-timing-function: ease-in-out;
+  /* slow at start and stop */
+  animation-direction: alternate;
+  /* go up AND down */
+  animation-iteration-count: infinite;
+  /* loop */
+}
+
+/* Tooltip text */
+.tooltipfilter .tooltiptextfilter {
+  visibility: hidden;
+  width: 10rem;
+  height: auto;
+  /* Allow the height to adjust based on content */
+
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 0.25rem 0;
+  border-radius: 0.3rem;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+
+  top: 27%;
+  left: 120%;
+
+  /* animate */
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltipfilter:hover .tooltiptextfilter {
+  visibility: visible;
+
+  /* animate */
+
+  opacity: 1;
+}
+
+.tooltipfilter .tooltiptextfilter::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  /* To the left of the tooltip */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent black transparent transparent;
+}
+
+/* chapter tooltips */
+.tooltipchapter {
+  position: relative;
+  display: inline-block;
+  /* display: flex; */
+  /* flex-direction: column; */
+  align-items: center;
+
+  /* background-image: linear-gradient( red, green); */
+}
+
+/* Tooltip text */
+.tooltipchapter .tooltiptextchapter {
+  visibility: hidden;
+  width: 10rem;
+  height: auto;
+  /* Allow the height to adjust based on content */
+
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 0.25rem 0;
+  border-radius: 0.3rem;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+
+  top: 130%;
+  left: -68%;
+
+  /* animate */
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltipchapter:hover .tooltiptextchapter {
+  visibility: visible;
+
+  /* animate */
+
+  opacity: 1;
+}
+
+.tooltipchapter .tooltiptextchapter::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;
+  /* At the top of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+
+
+.start {
+  width: 15rem;
+  height: 9rem;
+  font-size: 3rem;
+  position: absolute;
+  /* not able to be moved */
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  /* centers */
+  border: var(--borderColor) 0.5rem solid;
+  border-radius: 2rem;
+}
+
+.start:hover {
+  border: var(--selectColor) 0.5rem solid;
+}
+
+.Play {
+  position: fixed;
+  right: 0%;
+  bottom: 0%;
+  margin: 1rem;
+  cursor: pointer;
+}
+
+.playButton {
+  width: 6rem;
+}
+
+.More {
+  position: fixed;
+  right: 0%;
+  top: 0%;
+  margin: 1rem;
+}
+
+.moreButton {
+  width: 3rem;
+  transform: translateX(-60%);
+  cursor: help;
+}
+
+.ChapterTab {
+  display: flex;
+  /* lets justify work */
+  background-color: var(--tabColor);
+  text-align: center;
+  /* somehow works with images */
+  justify-content: center;
+  /* vertical align images */
+  height: calc(var(--circleSize) * 1.5);
+  /* just made up numbers for height and width */
+  width: calc(var(--circleSize) * 7.5);
+  margin: auto;
+  /* horizontal align*/
+  border-radius: .5rem;
+}
+
+.ColorFilters {
+  display: flex;
+  /* lets justify work */
+  background-color: var(--tabColor);
+  text-align: center;
+  /* somehow works with images */
+  justify-content: center;
+  /* vertical align images */
+  height: calc(var(--circleSize) * 7.5);
+  /* just made up numbers for height and width */
+  width: calc(var(--circleSize) * 1.5);
+  border-radius: .5rem;
+  flex-wrap: wrap;
+  margin-top: 5rem;
+}
+
+.ChapterImg {
+  position: relative;
+  /* Let it float up and down */
+  border: var(--borderColor) solid 0.25rem;
+  border-radius: 10rem;
+  /* border is circle */
+  width: var(--circleSize);
+  height: var(--circleSize);
+  object-fit: contain;
+  /* doesn't strech images */
+  margin: calc(var(--circleSize) / 8);
+  /* gap between circles */
+  transition-duration: 1s;
+  animation-iteration-count: infinite;
+  top: 0rem;
+  transition: transform 2s ease-in-out;
+  /* dunno why but fixes it so it always returns */
+}
+
+.FilterImg {
+  display: block;
+  position: relative;
+  border: var(--borderColor) solid 0.25rem;
+  border-radius: 10rem;
+  width: var(--circleSize);
+  height: var(--circleSize);
+  object-fit: contain;
+  margin: calc(var(--circleSize) / 8);
+  transition-duration: 1s;
+  animation-iteration-count: infinite;
+  top: 0rem;
+  transition: transform 2s ease-in-out;
+}
+
+.tooltipchapter:hover {
+  animation-name: select;
+  /* border: #3a3a3a solid 0.25rem; */
+  animation-duration: 0.5s;
+  /*time for floating */
+  animation-timing-function: ease-in-out;
+  /* slow at start and stop */
+  animation-direction: alternate;
+  /* go up AND down */
+  animation-iteration-count: infinite;
+  /* loop */
+}
+
+.tooltipfilter:hover {
+  animation-name: select;
+}
+
+#Normal {
+  border: var(--selectColor) solid 0.25rem;
+}
+
+#Chapter1 .Play::hover {
+  background-color: green;
+}
+
+.TextContent {
+  float: left;
+  width: 50%;
+  /* overflow: auto; */
+  height: 100%;
+}
+
+.AnimationContent {
+  position: relative;
+  display: flex;
+  float: right;
+  width: 50%;
+  overflow: hidden;
+  text-align: center;
+  height: 100%;
+}
+
+.AnimationContent>img {
+  position: absolute;
+  left: 0px;
+  opacity: 0;
+  width: 100%;
+  margin-left: 0.1%;
+  /* object-fit: cover; */
+  /* position: fixed; */
+}
+
+.More {
+  width: 1rem;
+  top: 0%;
+  right: 0%;
+}
+
+@keyframes select {
+  from {
+    top: 0rem;
+  }
+
+  to {
+    top: -0.4rem;
+  }
+}

@@ -53,8 +53,8 @@ svg {
   display: block;
   opacity: 0;
   padding: 1rem;
-  width: 45%;
-  height: 100%;
+  width: 100%;
+  height: 45%;
   overflow-x: hidden;
   /* Hide horizontal scrollbar */
   overflow-y: scroll;
@@ -320,20 +320,20 @@ svg {
 }
 
 .TextContent {
-  float: left;
-  width: 50%;
+  /* float: left; */
+  width: 100%;
   /* overflow: auto; */
-  height: 100%;
+  height: 50%;
 }
 
 .AnimationContent {
   position: relative;
   display: flex;
-  float: right;
-  width: 50%;
+  /* float: right; */
+  width: 100%;
   overflow: hidden;
   text-align: center;
-  height: 100%;
+  height: 50%;
 }
 
 .AnimationContent>img {
