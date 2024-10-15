@@ -2,7 +2,54 @@ var curText = "";
 var curAnim = "";
 var newChapter = false;
 
+let audioContext;
+let microphoneStream;
+let pannerNode;
+let sourceNode;
+let gainNode; // To control the volume (mute/unmute)
+
+
 window.onload = function() {
+
+    async function startMicrophone() {
+        try {
+          // Create audio context
+          audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      
+          // Get audio input from the microphone
+          microphoneStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      
+          // Create a source node from the microphone stream
+          sourceNode = audioContext.createMediaStreamSource(microphoneStream);
+      
+          // Create a panner node to control left/right channel
+          pannerNode = audioContext.createStereoPanner();
+      
+          // Create a gain node to control mute/unmute
+          gainNode = audioContext.createGain();
+      
+          // Set the initial gain to 1 (full volume)
+          gainNode.gain.value = 1;
+      
+          // Connect the source node to the panner node
+          sourceNode.connect(pannerNode);
+      
+          // Connect the panner node to the gain node
+          pannerNode.connect(gainNode);
+      
+          // Connect the gain node to the audio context's destination (your speakers)
+          gainNode.connect(audioContext.destination);
+      
+          // Set initial pan value to left channel
+          pannerNode.pan.value = -1;
+      
+          console.log("Microphone input started, sound is in left channel");
+        } catch (err) {
+          console.error("Error accessing microphone:", err);
+        }
+      }
+      
+
     let canvas = document.getElementById("webglCanvas")
     function resizeCanvasToVideo(videoElement, canvas) {
         canvas.width = videoElement.videoWidth;
@@ -78,13 +125,9 @@ async function createDyslexiaEffect(txtContent, txtElement) {
 
     txtContent.srcObject = stream;
 
-        video.pause();
-
-        console.log(canvas);
-        const ctx = canvas.getContext('2d');
+    video.pause();
 
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height); 
 
     dyslexia();
 
@@ -282,6 +325,52 @@ function createBlindnessEffect(videoElement, videoElementJquery) {
 }
 
 
+function createDeafnessEffect() {
+    // Function to switch the audio to the left channel
+    function switchToLeftChannel() {
+        if (pannerNode) {
+            pannerNode.pan.value = -1; // Left channel
+            console.log("Switched to left channel");
+        }
+    }
+  
+    // Function to switch the audio to the right channel
+    function switchToRightChannel() {
+        if (pannerNode) {
+        pannerNode.pan.value = 1; // Right channel
+        console.log("Switched to right channel");
+        }
+    }
+    
+    // Function to switch back to stereo (both channels)
+    function switchToStereo() {
+        if (pannerNode) {
+        pannerNode.pan.value = 0; // Center (stereo)
+        console.log("Switched to stereo (both channels)");
+        }
+    }
+    
+    // Function to mute the audio
+    function muteAudio() {
+        if (gainNode) {
+        gainNode.gain.value = 0; // Mute by setting gain to 0
+        console.log("Muted audio");
+        }
+    }
+    
+    // Function to unmute the audio
+    function unmuteAudio() {
+        if (gainNode) {
+        gainNode.gain.value = 1; // Restore volume by setting gain to 1
+        console.log("Unmuted audio");
+        }
+    }
+    startMicrophone(); // Start microphone
+
+    setTimeout(switchToRightChannel, 5000);
+}
+
+
 
 
 
@@ -292,17 +381,17 @@ function createBlindnessEffect(videoElement, videoElementJquery) {
 
     // Function to define a color filter in the UI
     function defineFilter(content, id) {
-        $(".ColorFilters").append(`<div class="tooltipfilter"> <img src="Images/Filters/${content}" class="FilterImg" id="${id}"></img> <span class="tooltiptextfilter">${id}</span> </div>`);
+        $(".ColorFilters").append(`<div class="tooltipfilter"> <img src="Images/${content}" class="FilterImg" id="${id}"></img> <span class="tooltiptextfilter">${id}</span> </div>`);
     }
 
     // Function to define a play button in the UI
     function definePlay(content) {
-        $(".Play").append(`<img src="Images/Symbols/${content}" class="playButton"></img>`);
+        $(".Play").append(`<img src="Images/${content}" class="playButton"></img>`);
     }
 
     // Function to define a "more" button in the UI
     function defineMore(content) {
-        $(".More").append(`<img src="Images/Symbols/${content}" class="moreButton"></img>`);
+        $(".More").append(`<img src="Images/${content}" class="moreButton"></img>`);
     }
 
     // Function to define text content for chapters
@@ -320,7 +409,7 @@ function createBlindnessEffect(videoElement, videoElementJquery) {
         $(".TextContent > span").css("pointer-events", "none");
         $(element).css("pointer-events", "auto");
     }
-$(".blah")[0]
+
     // Initialize chapters, filters, and interactions
     defineChapter("Eye-Black.png", "Colorblindness");
     defineChapter("Eye-Black.png", "Deafness");
@@ -340,12 +429,15 @@ $(".blah")[0]
     defineText("<ul><li>Color blindness is a condition where a person has cones in their eyes (the part of your eye that perceives color) that function improperly, poorly, or not at all.</li><li>There are three main types of color blindness:</li><ul><li>Deuteranopia (Red-Green Color Blindness) (green weak)</li><li>Protanopia (Red-Green Color Blindness) (red weak, what David has)</li><li>Tritanopia (Blue-Yellow Color Blindness) (blue weak)</li></ul></ul>", "Colorblindness", "1");
 
     defineAnim("Eye-Black.png", "Colorblindness");
-    defineText("Yes, color blindness does affect animals. Most animals see color differently than humans, so the way we are color blind is different, but animals can be color blind.", "Colorblindness", "2");
 
-    defineAnim("dyslexia.jpeg", "Dyslexia")
 
     defineAnim("Eye-Black.png", "Colorblindness");
+    
+    defineAnim("dyslexia.jpeg", "Dyslexia")
+    
     defineText("This is a simple visualization of dyslexia. It is an example of one kind at one severity, so bear in mind this is not perfectly accurate to all people, but it shows what living with this disability is like. Words appear to 'shift' and can be hard to understand quickly, if at all without years of practice and dedecation.", "Dyslexia", "1");
+
+    defineText("<br><br><br>This is a simple visualization of dyslexia. It is an example of one kind at one severity, so bear in mind this is not perfectly accurate to all people, but it shows what living with this disability is like. Words appear to 'shift' and can be hard to understand quickly, if at all without years of practice and dedecation.", "Dyslexia", "1");
 
 
     // Handle chapter image clicks
