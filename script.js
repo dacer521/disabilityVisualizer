@@ -8,6 +8,8 @@ let pannerNode;
 let sourceNode;
 let gainNode; // To control the volume (mute/unmute)
 
+let audioCommand = "switchToStereoChannel()";
+
 
 window.onload = function() {
 
@@ -41,7 +43,7 @@ window.onload = function() {
           gainNode.connect(audioContext.destination);
       
           // Set initial pan value to left channel
-          pannerNode.pan.value = -1;
+          pannerNode.pan.value = 0;
       
           console.log("Microphone input started, sound is in left channel");
         } catch (err) {
@@ -49,6 +51,47 @@ window.onload = function() {
         }
       }
       
+      
+    // Function to switch the audio to the left channel
+    function switchToLeftChannel() {
+        if (pannerNode) {
+            pannerNode.pan.value = -1; // Left channel
+            console.log("Switched to left channel");
+        }
+    }
+  
+    // Function to switch the audio to the right channel
+    function switchToRightChannel() {
+        if (pannerNode) {
+        pannerNode.pan.value = 1; // Right channel
+        console.log("Switched to right channel");
+        }
+    }
+    
+    // Function to switch back to stereo (both channels)
+    function switchToStereoChannel() {
+        if (pannerNode) {
+        pannerNode.pan.value = 0; // Center (stereo)
+        console.log("Switched to stereo (both channels)");
+        }
+    }
+    
+    // Function to mute the audio
+    function switchToMuteChannel() {
+        if (gainNode) {
+        gainNode.gain.value = 0; // Mute by setting gain to 0
+        console.log("Muted audio");
+        }
+    }
+    
+    // Function to unmute the audio
+    function switchToUnmuteChannel() {
+        if (gainNode) {
+        gainNode.gain.value = 1; // Restore volume by setting gain to 1
+        switchToStereoChannel();
+        console.log("Unmuted audio");
+        }
+    }
 
     let canvas = document.getElementById("webglCanvas")
     function resizeCanvasToVideo(videoElement, canvas) {
@@ -326,48 +369,15 @@ function createBlindnessEffect(videoElement, videoElementJquery) {
 
 
 function createDeafnessEffect() {
-    // Function to switch the audio to the left channel
-    function switchToLeftChannel() {
-        if (pannerNode) {
-            pannerNode.pan.value = -1; // Left channel
-            console.log("Switched to left channel");
-        }
-    }
-  
-    // Function to switch the audio to the right channel
-    function switchToRightChannel() {
-        if (pannerNode) {
-        pannerNode.pan.value = 1; // Right channel
-        console.log("Switched to right channel");
-        }
-    }
-    
-    // Function to switch back to stereo (both channels)
-    function switchToStereo() {
-        if (pannerNode) {
-        pannerNode.pan.value = 0; // Center (stereo)
-        console.log("Switched to stereo (both channels)");
-        }
-    }
-    
-    // Function to mute the audio
-    function muteAudio() {
-        if (gainNode) {
-        gainNode.gain.value = 0; // Mute by setting gain to 0
-        console.log("Muted audio");
-        }
-    }
-    
-    // Function to unmute the audio
-    function unmuteAudio() {
-        if (gainNode) {
-        gainNode.gain.value = 1; // Restore volume by setting gain to 1
-        console.log("Unmuted audio");
-        }
-    }
     startMicrophone(); // Start microphone
+<<<<<<< HEAD
       
     setTimeout(switchToRightChannel, 5000);
+=======
+    $(".tooltipsound>img").animate({opacity: 1});
+    // setTimeout(switchToLeftChannel, 5000);
+    // exec(audioCommand);
+>>>>>>> 201baf985dce3bd720b67ec343af0fa0979bc6db
 }
 
 
@@ -410,6 +420,11 @@ function createDeafnessEffect() {
         $(element).css("pointer-events", "auto");
     }
 
+    // Function to make buttons for audio
+    function defineAudio(img) {
+        $(".Sound").append(`<div class="tooltipsound"> <img src="Images/${img}.png" class="${img}Channel"> <span class="tooltiptextsound">${img}</span> </div>`);
+    }
+
     // Initialize chapters, filters, and interactions
     defineChapter("Eye-Black.png", "Colorblindness");
     defineChapter("Eye-Black.png", "Deafness");
@@ -438,6 +453,11 @@ function createDeafnessEffect() {
     defineText("This is a simple visualization of dyslexia. It is an example of one kind at one severity, so bear in mind this is not perfectly accurate to all people, but it shows what living with this disability is like. Words appear to 'shift' and can be hard to understand quickly, if at all without years of practice and dedecation.", "Dyslexia", "1");
 
     defineText("<br><br><br>This is a simple visualization of dyslexia. It is an example of one kind at one severity, so bear in mind this is not perfectly accurate to all people, but it shows what living with this disability is like. Words appear to 'shift' and can be hard to understand quickly, if at all without years of practice and dedecation.", "Dyslexia", "1");
+
+    defineAudio("Left");
+    defineAudio("Right");
+    defineAudio("Mute");
+    defineAudio("Unmute");
 
 
     // Handle chapter image clicks
@@ -485,6 +505,8 @@ function createDeafnessEffect() {
         } else {
             bounceShow(".Play");
         }
+        switchToMuteChannel();
+        $(".tooltipsound>img").animate({opacity: 0});
     });
 
     // Handle filter image clicks
@@ -494,6 +516,15 @@ function createDeafnessEffect() {
         $(".FilterImg").css("border", "grey solid 0.25rem");
         $(this).css("border", "#41c341 solid 0.25rem");
     });
+
+    $(".tooltipsound>img").click(function() {
+        eval(`switchTo${$(this).attr("class")}()`)
+        // let audioCommand = "switchTo" + $(this).attr("class") + "()";
+        $(".Sound>img").css("border", "grey solid 0.25rem");
+        $(this).css("border", "#41c341 solid 0.25rem");
+    });
+
+
     // Handle play button clicks
     $(".Play").click(function() {
         scrollFix(curText.replace(/.$/, "2"));

@@ -157,7 +157,7 @@ flex-wrap: wrap;
   padding: 0.25rem 0;
   border-radius: 0.3rem;
 
-  /* Position the tooltip text - see examples below! */
+  /* Position the tooltip text*/
   position: absolute;
   z-index: 1;
 
@@ -189,6 +189,76 @@ flex-wrap: wrap;
   border-style: solid;
   border-color: transparent transparent black transparent;
 }
+
+
+
+
+
+
+
+.tooltipsound {
+  position: relative;
+  display: inline-block;
+  /* display: flex; */
+  /* flex-direction: column; */
+  align-items: center;
+
+  /* background-image: linear-gradient( red, green); */
+}
+
+/* Tooltip text */
+.tooltipsound .tooltiptextsound {
+  visibility: hidden;
+  width: 5.5rem;
+  height: auto;
+  /* Allow the height to adjust based on content */
+
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 0.25rem 0;
+  border-radius: 0.3rem;
+
+  /* Position the tooltip text*/
+  position: absolute;
+  z-index: 1;
+
+  top: -65%;
+  left: -17%;
+
+  /* animate */
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltipsound:hover .tooltiptextsound {
+  visibility: visible;
+
+  /* animate */
+
+  opacity: 1;
+}
+
+.tooltipsound .tooltiptextsound::after {
+  content: " ";
+  position: absolute;
+  top: 100%;
+  /* At the top of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -299,6 +369,37 @@ flex-wrap: wrap;
   animation-iteration-count: infinite;
   top: 0rem;
   transition: transform 2s ease-in-out;
+}
+
+.tooltipsound>img {
+  display: block;
+  position: relative;
+  border: var(--borderColor) solid 0.25rem;
+  border-radius: 10rem;
+  width: var(--circleSize);
+  height: var(--circleSize);
+  object-fit: contain;
+  margin: calc(var(--circleSize) / 8);
+  transition-duration: 1s;
+  animation-iteration-count: infinite;
+  top: 0rem;
+  transition: transform 2s ease-in-out;
+  opacity: 0;
+
+  background-color: #fff;
+}
+
+.tooltipsound:hover {
+  animation-name: select;
+  /* border: #3a3a3a solid 0.25rem; */
+  animation-duration: 0.5s;
+  /*time for floating */
+  animation-timing-function: ease-in-out;
+  /* slow at start and stop */
+  animation-direction: alternate;
+  /* go up AND down */
+  animation-iteration-count: infinite;
+  /* loop */
 }
 
 .tooltipchapter:hover {
@@ -423,4 +524,10 @@ flex-wrap: wrap;
 #videoElement {
   position: absolute;
   left:50%
+}
+.Sound {
+  position: absolute;
+  bottom: 0px;
+  left: 50px;
+  display: flex;
 }
