@@ -8,6 +8,7 @@ let pannerNode;
 let sourceNode;
 let gainNode; // To control the volume (mute/unmute)
 
+let audioCommand = "switchToStereoChannel()";
 
 window.onload = function() {
 
@@ -366,8 +367,10 @@ function createDeafnessEffect() {
         }
     }
     startMicrophone(); // Start microphone
-      
-    setTimeout(switchToRightChannel, 5000);
+    // setTimeout(switchToRightChannel, 5000);
+    $(".tooltipsound>img").animate({opacity: 1});
+    // setTimeout(switchToLeftChannel, 5000);
+    exec(audioCommand);
 }
 
 
@@ -410,6 +413,12 @@ function createDeafnessEffect() {
         $(element).css("pointer-events", "auto");
     }
 
+    // Function to make buttons for audio
+    function defineAudio(img) {
+        $(".Sound").append(`<div class="tooltipsound"> <img src="Images/${img}.png" class="${img}Channel"> <span class="tooltiptextsound">${img}</span> </div>`);
+    }
+    
+
     // Initialize chapters, filters, and interactions
     defineChapter("Eye-Black.png", "Colorblindness");
     defineChapter("Eye-Black.png", "Deafness");
@@ -438,6 +447,12 @@ function createDeafnessEffect() {
     defineText("This is a simple visualization of dyslexia. It is an example of one kind at one severity, so bear in mind this is not perfectly accurate to all people, but it shows what living with this disability is like. Words appear to 'shift' and can be hard to understand quickly, if at all without years of practice and dedecation.", "Dyslexia", "1");
 
     defineText("<br><br><br>This is a simple visualization of dyslexia. It is an example of one kind at one severity, so bear in mind this is not perfectly accurate to all people, but it shows what living with this disability is like. Words appear to 'shift' and can be hard to understand quickly, if at all without years of practice and dedecation.", "Dyslexia", "1");
+
+
+    defineAudio("Left");
+    defineAudio("Right");
+    defineAudio("Mute");
+    defineAudio("Unmute");
 
 
     // Handle chapter image clicks
@@ -485,6 +500,8 @@ function createDeafnessEffect() {
         } else {
             bounceShow(".Play");
         }
+        switchToMuteChannel();
+        $(".tooltipsound>img").animate({opacity: 0});
     });
 
     // Handle filter image clicks
@@ -493,6 +510,7 @@ function createDeafnessEffect() {
         $(":root").css("filter", "url(#" + "modularFilter" + ")");
         $(".FilterImg").css("border", "grey solid 0.25rem");
         $(this).css("border", "#41c341 solid 0.25rem");
+        
     });
     // Handle play button clicks
     $(".Play").click(function() {
