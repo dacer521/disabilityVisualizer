@@ -370,14 +370,9 @@ function createBlindnessEffect(videoElement, videoElementJquery) {
 
 function createDeafnessEffect() {
     startMicrophone(); // Start microphone
-<<<<<<< HEAD
-      
-    setTimeout(switchToRightChannel, 5000);
-=======
     $(".tooltipsound>img").animate({opacity: 1});
     // setTimeout(switchToLeftChannel, 5000);
     // exec(audioCommand);
->>>>>>> 201baf985dce3bd720b67ec343af0fa0979bc6db
 }
 
 
