@@ -432,7 +432,7 @@ function createDeafnessEffect() {
 
 
     defineAnim("Eye-Black.png", "Colorblindness");
-    
+                                                                                                                                                 
     defineAnim("dyslexia.jpeg", "Dyslexia")
     
     defineText("This is a simple visualization of dyslexia. It is an example of one kind at one severity, so bear in mind this is not perfectly accurate to all people, but it shows what living with this disability is like. Words appear to 'shift' and can be hard to understand quickly, if at all without years of practice and dedecation.", "Dyslexia", "1");
