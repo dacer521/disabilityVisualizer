@@ -421,11 +421,11 @@ function createDeafnessEffect() {
     }
 
     // Initialize chapters, filters, and interactions
-    defineChapter("Eye-Black.png", "Colorblindness");
-    defineChapter("Eye-Black.png", "Deafness");
-    defineChapter("Eye-Black.png", "Blindness");
-    defineChapter("Eye-Black.png", "Astigmatism");
-    defineChapter("Eye-Black.png", "Dyslexia");
+    defineChapter("Colorblindness.png", "Colorblindness");
+    defineChapter("Deafness.png", "Deafness");
+    defineChapter("Blindness.png", "Blindness");
+    defineChapter("astigmatism.png", "Astigmatism");
+    defineChapter("dyslexic.png", "Dyslexia");
 
     defineFilter("full_color.png", "Normal");
     defineFilter("deuteranopia.png", "Deuteranopia");
@@ -441,8 +441,10 @@ function createDeafnessEffect() {
     defineAnim("Eye-Black.png", "Colorblindness");
 
 
-    defineAnim("Eye-Black.png", "Colorblindness");
-    
+
+    defineText("This visualization depicts astigmatism, a condition caused by an irregular curvature in the cornea or lens. This uneven shape distorts how light enters the eye, leading to blurred or distorted vision. The example displayed shows a more severe case to highlight the impairment while staying true to the general effects of astigmatism. It's important to note that everyone experiences this condition, and other disabilities, differently. This representation is not intended to show exactly how all individuals with astigmatism perceive the world. Instead, it aims to raise awareness and foster understanding. Please keep this in mind when viewing the visualization. ", "Astigmatism", 1)
+    defineText("This visualization simulates partial blindness, which can arise from a variety of factors, such as genetics, cataracts, age-related changes, rare migraines, diabetes, and more. The example provided demonstrates a more pronounced case, reflecting the blurred vision typical of someone with partial blindness. As with all disabilities, individual experiences vary, and this visualization is not intended to represent every person’s reality. Its purpose is to offer a simplified example to spread knowledge and awareness. Please keep this in mind as you explore the visualization. ", "Blindness", 1)
+    defineText("This visualization demonstrates single-sided deafness, a condition where individuals lose hearing in one ear while maintaining normal or near-normal hearing in the other. Causes can include genetics, trauma, infections, tumors, or sudden hearing loss events. In this example, we highlight a more severe case to make the impairment noticeable and informative. It's important to remember that everyone's experience with single-sided deafness is unique, and this is just one way the condition might be experienced. This visualization is meant as a simple example to spread awareness and understanding. Please keep this in mind while viewing the simulation.  ", "Deafness", 1)
     defineAnim("dyslexia.jpeg", "Dyslexia")
     
     defineText("This is a simple visualization of dyslexia. It is an example of one kind at one severity, so bear in mind this is not perfectly accurate to all people, but it shows what living with this disability is like. Words appear to 'shift' and can be hard to understand quickly, if at all without years of practice and dedecation.", "Dyslexia", "1");

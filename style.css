@@ -9,9 +9,10 @@
 
 html {
   height: 100%;
-  background-color: #78f5f5;
+  background-color: #6C698D;
   width: 100%;
   overflow: hidden;
+  color: white;
 }
 #webglCanvas, #videoElement {
   float: right;
@@ -64,7 +65,7 @@ flex-wrap: wrap;
   height: 45%;
   overflow-x: hidden;
   /* Hide horizontal scrollbar */
-  overflow-y: scroll;
+  overflow-y: hidden;
   /* Add vertical scrollbar */
 }
 
@@ -354,6 +355,7 @@ flex-wrap: wrap;
   top: 0rem;
   transition: transform 2s ease-in-out;
   /* dunno why but fixes it so it always returns */
+  background-color: white;
 }
 
 .FilterImg {
@@ -369,6 +371,7 @@ flex-wrap: wrap;
   animation-iteration-count: infinite;
   top: 0rem;
   transition: transform 2s ease-in-out;
+  background-color: white;
 }
 
 .tooltipsound>img {
@@ -493,10 +496,11 @@ flex-wrap: wrap;
   /* just made up numbers for height and width */
   width: calc(var(--circleSize) * 1.5);
   /* transform: translate(100%, -100%); */
-
+  accent-color: #6C698D;
+  accent-color: rgb(193, 193, 255);
 }
 .slidecontainer {
-  background-color: rgb(100, 100, 100);
+  background-color: rgb(120, 120, 120);
   /* writing-mode: vertical-rl;
   direction: rtl; */
   height: calc(var(--circleSize) * 7.5);
@@ -509,7 +513,7 @@ flex-wrap: wrap;
 }
 
 .sevAmt {
-  text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
 }
 #webglCanvas {
   width: 30vw;
