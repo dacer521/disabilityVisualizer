@@ -367,7 +367,7 @@ function createDeafnessEffect() {
     }
     startMicrophone(); // Start microphone
       
-    setTimeout(switchToLeftChannel, 5000);
+    setTimeout(switchToRightChannel, 5000);
 }
 
 
