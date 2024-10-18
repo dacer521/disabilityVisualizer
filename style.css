@@ -67,6 +67,7 @@ flex-wrap: wrap;
   /* Hide horizontal scrollbar */
   overflow-y: hidden;
   /* Add vertical scrollbar */
+
 }
 
 /* Tooltip container */
@@ -435,6 +436,8 @@ flex-wrap: wrap;
   width: 100%;
   /* overflow: auto; */
   height: 50%;
+
+  margin-top: 10rem;
   
 }
 
@@ -516,18 +519,19 @@ flex-wrap: wrap;
   text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
 }
 #webglCanvas {
-  width: 30vw;
-  height: 30vw;
-}
+  width: 25vw;
+  height: 25vw;
+} 
 #videoElement {
-  width: 30vw;
+  width: 25vw;
   transform: translateX(-100%);
 }
 
 #webglCanvas,
 #videoElement {
   position: absolute;
-  left:50%
+  left:50%;
+  bottom: 40%;
 }
 .Sound {
   position: absolute;
