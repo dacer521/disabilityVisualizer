@@ -1,19 +1,21 @@
-async function getCamera(){
 
+async function getCamera(){
+    canvas = document.getElementById("webglCanvas")
     let stream;
-    try {
+    // try {
     stream = await navigator.mediaDevices.getUserMedia({ video: true });
     let video = document.getElementById("videoElement")
-        video.style.display = "inline"
+        video.style.display = "inline";
+        canvas.style.display = "block";
         // video.style.position = "absolute"
         // video.style.width = "30vw";
         // video.style.height = "auto";
         video.srcObject = stream;
         video.play();
-    }
-    catch {
-        console.log("why")
-    }
+    // }
+    // catch {
+    //     console.log("why")
+    // }
     
 };
 

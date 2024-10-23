@@ -92,7 +92,7 @@ window.onload = function() {
         console.log("Unmuted audio");
         }
     }
-
+    
     let canvas = document.getElementById("webglCanvas")
     function resizeCanvasToVideo(videoElement, canvas) {
         canvas.width = videoElement.videoWidth;
@@ -367,8 +367,32 @@ function createBlindnessEffect(videoElement, videoElementJquery) {
     render();
 }
 
+function createColorblindnessEffect() {
+    removeCamera();
+}
 
 function createDeafnessEffect() {
+    removeCamera();
+    // let stream;
+    // // try {
+
+
+    // canvas.style.display = "hidden"
+
+    // canvas.style.transform = "translateY(-1000%)"
+
+    // setTimeout(1000);
+
+    // let video = document.getElementById("videoElement")
+
+    // video.style.display = "hidden"
+
+    
+
+    // txtContent.srcObject = stream;
+
+    // video.pause();
+
     startMicrophone(); // Start microphone
     $(".tooltipsound>img").animate({opacity: 1});
     // setTimeout(switchToLeftChannel, 5000);
@@ -433,13 +457,14 @@ function createDeafnessEffect() {
     defineFilter("tritanopia.png", "Tritanopia");
     defineFilter("achromatopsia.png", "Achromatopsia");
 
-    definePlay("Play.png");
+    // definePlay("Play.png");
     defineMore("QuestionMark.png");
 
     defineText("<ul><li>Color blindness is a condition where a person has cones in their eyes (the part of your eye that perceives color) that function improperly, poorly, or not at all.</li><li>There are three main types of color blindness:</li><ul><li>Deuteranopia (Red-Green Color Blindness) (green weak)</li><li>Protanopia (Red-Green Color Blindness) (red weak, what David has)</li><li>Tritanopia (Blue-Yellow Color Blindness) (blue weak)</li></ul></ul>", "Colorblindness", "1");
 
-    defineAnim("Eye-Black.png", "Colorblindness");
 
+    defineAnim("rainbow.jpg", "Colorblindness")
+    defineAnim("ear.png", "Deafness")
 
 
     defineText("This visualization depicts astigmatism, a condition caused by an irregular curvature in the cornea or lens. This uneven shape distorts how light enters the eye, leading to blurred or distorted vision. The example displayed shows a more severe case to highlight the impairment while staying true to the general effects of astigmatism. It's important to note that everyone experiences this condition, and other disabilities, differently. This representation is not intended to show exactly how all individuals with astigmatism perceive the world. Instead, it aims to raise awareness and foster understanding. Please keep this in mind when viewing the visualization. ", "Astigmatism", 1)
@@ -449,8 +474,12 @@ function createDeafnessEffect() {
     
     defineText("This is a simple visualization of dyslexia. It is an example of one kind at one severity, so bear in mind this is not perfectly accurate to all people, but it shows what living with this disability is like. Words appear to 'shift' and can be hard to understand quickly, if at all without years of practice and dedecation.", "Dyslexia", "1");
 
-    defineText("<br><br><br>This is a simple visualization of dyslexia. It is an example of one kind at one severity, so bear in mind this is not perfectly accurate to all people, but it shows what living with this disability is like. Words appear to 'shift' and can be hard to understand quickly, if at all without years of practice and dedecation.", "Dyslexia", "1");
+    defineText("<br><br><br><br>This is a simple visualization of dyslexia. It is an example of one kind at one severity, so bear in mind this is not perfectly accurate to all people, but it shows what living with this disability is like. Words appear to 'shift' and can be hard to understand quickly, if at all without years of practice and dedecation.", "Dyslexia", "1");
 
+    defineAnim("color.jpg", "More")
+    defineText("Welcome to our disability visualizer web app, <i>EqualEyes</i>. Here, you'll find simulations designed to raise awareness and understanding of various sensory impairments, such as vision and hearing disabilities. These visualizations are simplified representations, crafted to provide a glimpse into how individuals with different impairments might experience the world. However, it’s crucial to recognize that no two people experience a disability in the exact same way. Each condition varies in severity and impact, and these simulations are not intended to fully capture those differences. Instead, they serve as an educational tool to promote empathy and awareness. ", "More", "1")
+    
+    
     defineAudio("Left");
     defineAudio("Right");
     defineAudio("Mute");
@@ -538,6 +567,11 @@ function createDeafnessEffect() {
         $(".More-1").animate({ opacity: 1 });
         $(`.imgMore`).animate({ opacity: 1 });
     });
+    $(".TextContent > span").animate({ opacity: 0 });
+    $(".AnimationContent > img").animate({ opacity: 0 });
+    bounceHide(".Play");
+    $(".More-1").animate({ opacity: 1 });
+    $(`.imgMore`).animate({ opacity: 1 });
 };
 
 NormalVision = [1.000000, 0.000000, -0.000000, 0.000000, 1.000000, 0.000000, -0.000000, -0.000000, 1.000000];

@@ -305,6 +305,7 @@ flex-wrap: wrap;
   width: 3rem;
   transform: translateX(-60%);
   cursor: help;
+  border-radius: 10rem;
 }
 
 .ChapterTab {
@@ -334,9 +335,11 @@ flex-wrap: wrap;
   height: calc(var(--circleSize) * 7.5);
   /* just made up numbers for height and width */
   width: calc(var(--circleSize) * 1.5);
-  border-radius: .5rem;
+  border-radius:  .5rem 0px 0px .5rem;
   flex-wrap: wrap;
   margin-top: 5rem;
+  margin-right: -4px;
+  border-right: #6C698D solid 4px;
 }
 
 .ChapterImg {
@@ -437,7 +440,7 @@ flex-wrap: wrap;
   /* overflow: auto; */
   height: 50%;
 
-  margin-top: 10rem;
+  margin-top: 9rem;
   
 }
 
@@ -500,10 +503,10 @@ flex-wrap: wrap;
   width: calc(var(--circleSize) * 1.5);
   /* transform: translate(100%, -100%); */
   accent-color: #6C698D;
-  accent-color: rgb(193, 193, 255);
+  accent-color: white;
 }
 .slidecontainer {
-  background-color: rgb(120, 120, 120);
+  background-color: var(--tabColor);
   /* writing-mode: vertical-rl;
   direction: rtl; */
   height: calc(var(--circleSize) * 7.5);
@@ -513,6 +516,8 @@ flex-wrap: wrap;
   text-align: center;
   justify-content: center;
   border-radius: 0rem .5rem .5rem 0rem;
+  margin-left: -4px;
+  border-left: #6C698D solid 4px;
 }
 
 .sevAmt {
@@ -538,4 +543,10 @@ flex-wrap: wrap;
   bottom: 0px;
   left: 50px;
   display: flex;
+}
+.More-1 {
+  opacity: 1;
+}
+.imgMore {
+  opacity: 1;
 }
