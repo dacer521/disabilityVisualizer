@@ -661,7 +661,7 @@ function colorConfirm(colorBlind = oldColorBlind) {
     // }
 }
 
-// modfil.
+
 
 //slider stuff
 $(".slider").on("input", function(){
